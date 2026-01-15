@@ -12,7 +12,7 @@ const paymentSchema = new mongoose.Schema({
   },
   payment_method: {
     type: String,
-    enum: ['bank', 'momo', 'cash'],
+    enum: ['bank', 'momo'],
     required: true
   },
   transaction_id: {

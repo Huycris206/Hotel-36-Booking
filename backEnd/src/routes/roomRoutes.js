@@ -1,6 +1,8 @@
 import express from 'express';
-import { getAllRooms,createRoom, deleteRoom, updateRoom } from '../controllers/roomsController.js';
+import { getAllRooms,createRoom, deleteRoom, updateRoom,getRoomById } from '../controllers/roomController.js';
 const router=express.Router();
+
+router.get('/:id',getRoomById);
 
 router.get('/',getAllRooms);
 

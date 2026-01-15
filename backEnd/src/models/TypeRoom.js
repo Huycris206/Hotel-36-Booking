@@ -10,16 +10,20 @@ const typeRoomSchema = new mongoose.Schema({
   },
   price_hourly: {
     type: mongoose.Schema.Types.Decimal128,
+    default:70000,
     required: true
   },
   price_additional_hour: {
-    type: mongoose.Schema.Types.Decimal128
+    type: mongoose.Schema.Types.Decimal128,
+    default:20000
   },
   price_daily: {
-    type: mongoose.Schema.Types.Decimal128
+    type: mongoose.Schema.Types.Decimal128,
+    default:300000
   },
   price_overnight: {
-    type: mongoose.Schema.Types.Decimal128
+    type: mongoose.Schema.Types.Decimal128,
+    default:170000
   },
   image_url: {
     type: String

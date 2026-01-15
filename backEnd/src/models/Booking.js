@@ -13,14 +13,17 @@ const bookingSchema = new mongoose.Schema({
   },
   check_in: {
     type: Date,
+    default: Date.now,
     required: true
   },
   check_out: {
     type: Date,
+    default: null,
     required: true
   },
   total_amount: {
     type: mongoose.Schema.Types.Decimal128,
+    default: 0.0,
     required: true
   },
   status: {
