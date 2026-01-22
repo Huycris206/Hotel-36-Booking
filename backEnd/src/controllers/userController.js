@@ -60,3 +60,58 @@ export const deleteUser = async (req, res) => {
         res.status(500).json(err);
     }
 };
+
+export const getProfile = async (req, res) => {
+  try {
+    res.status(200).json(req.user);
+  } catch (err) {
+    console.error("GET PROFILE ERROR:", err);
+    res.status(500).json({ message: "Không lấy được thông tin người dùng" });
+  }
+};
+
+export const updateProfile = async (req, res) => {
+  try {
+    const { name, email, number_phone } = req.body;
+
+    // 🔒 Chỉ cho phép sửa các field này
+    if (!name || !email) {
+      return res.status(400).json({
+        message: "Tên và email không được để trống",
+      });
+    }
+
+    // ❗ Check email trùng (nếu đổi)
+    if (email !== req.user.email) {
+      const emailExist = await User.findOne({ email });
+      if (emailExist) {
+        return res.status(400).json({
+          message: "Email đã được sử dụng",
+        });
+      }
+    }
+
+    // ❗ Check sđt trùng (nếu đổi)
+    if (number_phone !== req.user.number_phone) {
+      const phoneExist = await User.findOne({ number_phone });
+      if (phoneExist) {
+        return res.status(400).json({
+          message: "Số điện thoại đã tồn tại",
+        });
+      }
+    }
+
+    req.user.name = name;
+    req.user.email = email;
+    req.user.number_phone = number_phone;
+
+    const updatedUser = await req.user.save();
+
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    console.error("UPDATE PROFILE ERROR:", err);
+    res.status(500).json({
+      message: "Cập nhật thông tin thất bại",
+    });
+  }
+};

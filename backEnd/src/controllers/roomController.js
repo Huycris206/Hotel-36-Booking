@@ -1,9 +1,11 @@
 import Room from "../models/Room.js";
 import TypeRoom from "../models/TypeRoom.js";
+import mongoose from "mongoose";
+
 
 export const getAllRooms= async (req,res)=>{
     try{
-        const rooms=await Room.find();
+        const rooms=await Room.find().populate('type');
         res.status(200).json(rooms);
     }catch(error){
         console.error("lỗi khi gọi getAllRooms",error);
@@ -12,11 +14,15 @@ export const getAllRooms= async (req,res)=>{
 }
 export const getRoomById = async (req, res) => {
     try {
-        const Room = await TypeRoom.findById(req.params.id);
-        if (!Room) {
+        const {id   } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "ID phòng không hợp lệ" });
+        }
+        const room = await Room.findById(req.params.id).populate('type');
+        if (!room) {
             return res.status(404).json({ message: "Không tìm thấy phòng này" });
         }
-        res.status(200).json(Room);
+        res.status(200).json(room);
     } catch (error) {
         console.error("Lỗi khi gọi getRoomById:", error);
         res.status(500).json({ message: "Lỗi hệ thống" });
