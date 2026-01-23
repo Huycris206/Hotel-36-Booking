@@ -45,8 +45,7 @@ const LoginPage = () => {
       login(user, token)
 
       // ✅ LƯU TOKEN + USER
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      
 
       // 🔐 CHECK ROLE
       if (user.role === "admin") {

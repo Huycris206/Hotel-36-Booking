@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toaster, toast } from 'sonner';  
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/HomePage.jsx';
 import NotFound from './pages/NotFound/NotFoundPage.jsx';
 import LoginPage from "./pages/Auth/LoginPage";
@@ -10,7 +10,6 @@ import RoomDetailPage from './pages/RoomDetail/RoomDetailPage.jsx';
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
         <Routes>
           
           <Route path='/rooms/:id' element={<RoomDetailPage />} />
@@ -21,7 +20,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
 
         </Routes>
-      </BrowserRouter>
+      
     </div>
   )
 }
