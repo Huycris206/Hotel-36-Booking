@@ -14,7 +14,7 @@ const HomePage = () => {
       <HeaderBooking type={type} setType={setType}/>
 
       <div className="container mx-auto px-4">
-        <RoomList/>
+        <RoomList timeType={type}/>
       </div>
 
       <Footer/>
