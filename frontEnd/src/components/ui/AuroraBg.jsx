@@ -2,7 +2,7 @@ import React from 'react'
 
 const AuroraBg = ({children,}) => {
   return (
-    <div className="min-h-screen w-full relative w-screen flex flex-col ">
+    <div className="min-h-screen w-full relative w-screen flex flex-col bg-transparent ">
         {/* Aurora Silk Fade Gradient */}
       <div
         className="absolute inset-0 z-0"

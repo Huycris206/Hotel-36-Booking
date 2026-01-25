@@ -2,13 +2,13 @@ import React from 'react';
 import { Search, Globe, User } from 'lucide-react'; // Sử dụng Lucide-react cho icon
 import Logo from './Logo';
 import { Link  } from "react-router-dom";
-import LoginBtn from '../LogInBtn';
-import SignInBtn from '../SignInBtn';
-import ProfileBtn from '../ProfileBtn';
-import LogoutBtn from '../LogOutBtn';
+import LoginBtn from '../../ui/LogInBtn';
+import SignInBtn from '../../ui/SignInBtn';
+import ProfileBtn from '../../ui/ProfileBtn';
+import LogoutBtn from '../../ui/LogOutBtn';
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
-import Loadingcomp from '../Loadingcomp';
+import Loadingcomp from '../../ui/Loadingcomp';
 
 const Header = () => {
   const { user, logout,loading } = useContext(AuthContext);

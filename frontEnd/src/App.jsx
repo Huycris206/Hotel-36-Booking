@@ -7,11 +7,13 @@ import LoginPage from "./pages/Auth/LoginPage";
 import RegisterPage from "./pages/Auth/RegisterPage";
 import ProfilePage from './pages/Profile/ProfilePage.jsx';
 import RoomDetailPage from './pages/RoomDetail/RoomDetailPage.jsx';
+import BookingPage from './pages/Booking/BookingPage.jsx';
 const App = () => {
   return (
     <div>
         <Routes>
           
+          <Route path='/booking/:id' element={<BookingPage />} />
           <Route path='/rooms/:id' element={<RoomDetailPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/" element={<Home />} />

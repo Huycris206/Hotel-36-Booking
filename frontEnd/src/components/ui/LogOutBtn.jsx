@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+
 
 const LogoutBtn = ({ onLogout }) => {
-  const navigate = useNavigate();
+  
 
   const handleLogout = () => {
     // 1. Xóa dữ liệu trình duyệt
@@ -13,7 +13,7 @@ const LogoutBtn = ({ onLogout }) => {
     if (onLogout) onLogout();
     
     // 3. Chuyển hướng
-    navigate("/");
+
   };
 
   return (
