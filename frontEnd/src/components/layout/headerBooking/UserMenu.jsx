@@ -1,7 +1,6 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "@/context/AuthContext";
 
 export default function UserMenu() {
   const [open, setOpen] = useState(false);

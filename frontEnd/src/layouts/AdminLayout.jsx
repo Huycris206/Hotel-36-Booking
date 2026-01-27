@@ -1,11 +1,12 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
-
+import { AuthContext } from "@/context/AuthContext";
+import {  useContext } from "react";
 const AdminLayout = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
-
+ 
+  const { logout, user} = useContext(AuthContext);
   const handleLogout = () => {
-    localStorage.clear();
+    logout();
     navigate("/login");
   };
 
@@ -22,6 +23,9 @@ const AdminLayout = () => {
           <Link to="/admin/bookings" className="block px-4 py-3 rounded-lg hover:bg-gray-700 transition">📅 Đơn đặt phòng</Link>
         </nav>
         <div className="p-4 border-t border-gray-700">
+          <Link to="/" className="block mb-4 px-4 py-3 rounded-lg bg-green-600 hover:bg-green-800 text-center transition">
+            🏠 Về trang chủ
+          </Link>
           <button onClick={handleLogout} className="w-full py-2 px-4 bg-red-600 hover:bg-red-700 rounded-lg text-white font-bold transition">
             Đăng xuất
           </button>

@@ -39,6 +39,11 @@ const HeaderBooking = ({roomName,type,setType,totalTime}) => {
               <UserMenu />
             </>
           )}
+          {user?.role==='admin' && (
+            <Link to="/admin/rooms" className="hidden md:inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 shadow">
+              admin
+            </Link>
+          )}
           
            
         </div>
