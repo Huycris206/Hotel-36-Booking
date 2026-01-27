@@ -9,7 +9,7 @@ import LoginPage from "./pages/Auth/LogInPage";
 import RegisterPage from "./pages/Auth/RegisterPage";
 import ProfilePage from './pages/Profile/ProfilePage.jsx';
 import RoomDetailPage from './pages/RoomDetail/RoomDetailPage.jsx';
-import BookingPage from './pages/Booking/BookingPage.jsx';
+import CheckOutPage from './pages/Booking/CheckOutPage.jsx';
 
 // --- Admin Pages ---
 // 👇 Đảm bảo 5 file này phải tồn tại, nếu thiếu 1 cái là lỗi trắng màn hình
@@ -18,6 +18,7 @@ import ManageRooms from "./pages/Admin/ManageRooms";
 import ManageUsers from "./pages/Admin/ManageUsers.jsx";
 import ManageBookings from "./pages/Admin/ManageBookings";
 import AdminRoute from "./components/AdminRoute";
+import { Check } from 'lucide-react';
 
 const App = () => {
   return (
@@ -31,7 +32,7 @@ const App = () => {
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/rooms/:id' element={<RoomDetailPage />} />
-          <Route path='/booking/:roomId' element={<BookingPage />} />
+          <Route path='/checkout/:roomId' element={<CheckOutPage />} />
 
           {/* --- ADMIN ROUTES --- */}
           <Route element={<AdminRoute />}>

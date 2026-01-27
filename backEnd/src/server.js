@@ -8,6 +8,7 @@ import Payment from "./routes/paymentRouters.js";
 import Verfication from "./routes/verficationRoutes.js";
 import Auth from "./routes/authRoutes.js";
 import { connectDB } from './config/db.js';
+import Checkout from './routes/checkoutRoutes.js';
 import cors from 'cors';
 
 const app=express();
@@ -15,7 +16,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
-
+app.use('api/checkout',Checkout)
 app.use('/api/auth',Auth);
 app.use('/api/verfications',Verfication);
 app.use('/api/bookings',Booking);
