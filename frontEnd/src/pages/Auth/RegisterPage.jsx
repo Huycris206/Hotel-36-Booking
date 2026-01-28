@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import Input from "../../components/ui/Input";
 import AuroraBg from "@/components/ui/AuroraBg";
-import Header from "@/components/ui/header/Header";
+import Header from "@/components/layout/header/Header";
 
 const RegisterPage = () => {
   const navigate = useNavigate();

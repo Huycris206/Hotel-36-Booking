@@ -5,7 +5,7 @@ import LogoutBtn from "@/components/ui/LogOutBtn";
 import { AuthContext } from "@/context/AuthContext";
 import Loadingcomp from "@/components/ui/Loadingcomp.jsx";
 import AuroraBg from "@/components/ui/AuroraBg";
-import Header from "@/components/ui/header/Header";
+import Header from "@/components/layout/header/Header";
 
 export default function ProfilePage() {
   const { user, logout,fetchProfile,loading } = useContext(AuthContext);
