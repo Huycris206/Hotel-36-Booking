@@ -3,8 +3,9 @@ import { LogIn, LogOut } from "lucide-react";
 import { Divider } from "./Divider";
 import { Calendar } from "@/components/ui/calendar";
 import TimeScroller from "./TimeScroll";
+import { useBooking } from "@/context/BookingContext";
 
-export const BookingTime = ({type,onChangeTotalTime}) => {
+export const BookingTime = ({type}) => {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
   const [checkInHour, setCheckInHour] = useState("20:00");
@@ -13,6 +14,7 @@ export const BookingTime = ({type,onChangeTotalTime}) => {
     from: undefined,
     to: undefined,
   });
+  const { setCheckIn, setCheckOut, setTotalTime } = useBooking();
   
 
 
@@ -113,10 +115,15 @@ export const BookingTime = ({type,onChangeTotalTime}) => {
     return 0;
   };
   useEffect(() => {
-    const total = calculateTotalTime();
-    onChangeTotalTime?.(total);
-  }, [type, duration, range, date]);
+    const checkIn = getCheckInDate();
+    const checkOut = getCheckoutDate();
 
+    if (checkIn && checkOut) {
+      setCheckIn(checkIn);
+      setCheckOut(checkOut);
+      setTotalTime(calculateTotalTime());
+    }
+  }, [type, date, duration, range]);
 
   return (
     <div className="relative">

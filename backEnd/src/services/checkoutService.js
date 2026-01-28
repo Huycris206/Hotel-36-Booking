@@ -44,13 +44,13 @@ export const previewCheckoutService = async ({
     startAt,
     endAt,
   });
-
+  console.log("ROOM TYPE:", room.type);
   // 5️⃣ Trả preview
   return {
     room: {
       id: room._id,
       name: room.name,
-      type: room.type.name,
+      type: room.type,
       image: room.type.image_url,
     },
     booking: {
@@ -61,5 +61,7 @@ export const previewCheckoutService = async ({
       unit: priceResult.unit,
     },
     price: priceResult,
+    
   };
+  
 };

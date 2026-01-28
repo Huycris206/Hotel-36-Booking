@@ -9,7 +9,7 @@ import {
   LogOut,
 } from "lucide-react";
 
-export default function BookingBar({room,type,setType,toTalTime}) {
+export default function BookingBar({room,type,setType,toTalTime,checkIn,checkOut}) {
   
   return (
     <div className="w-full bg-white rounded-full shadow flex items-center px-6 py-3 gap-6">
@@ -46,7 +46,7 @@ export default function BookingBar({room,type,setType,toTalTime}) {
       <Divider />
 
       <div className="flex-1">
-        <BookingTime type={type} onChangeTotalTime={toTalTime} />
+        <BookingTime type={type}   />
       </div>
 
       {/* Button */}

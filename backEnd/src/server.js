@@ -16,7 +16,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
-app.use('api/checkout',Checkout)
+app.use('/api/checkout',Checkout)
 app.use('/api/auth',Auth);
 app.use('/api/verfications',Verfication);
 app.use('/api/bookings',Booking);

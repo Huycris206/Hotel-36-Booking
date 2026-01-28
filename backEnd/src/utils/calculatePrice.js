@@ -1,11 +1,13 @@
+const toNumber = (value) =>
+  value ? Number(value.toString()) : 0;
 const calculatePrice = ({ type, bookingType, startAt, endAt }) => {
   const diffMs = endAt - startAt;
   const hours = Math.ceil(diffMs / (1000 * 60 * 60));
 
   switch (bookingType) {
     case "hour": {
-      const firstHour = Number(type.price_hourly);
-      const extraHour = Number(type.price_additional_hour || 0);
+      const firstHour = toNumber(type.price_hourly);
+      const extraHour = toNumber(type.price_additional_hour || 0);
 
       let total = firstHour;
       if (hours > 1) {
@@ -24,16 +26,16 @@ const calculatePrice = ({ type, bookingType, startAt, endAt }) => {
       return {
         unit: "ngày",
         duration: 1,
-        unitPrice: Number(type.price_daily),
-        total: Number(type.price_daily),
+        unitPrice: toNumber(type.price_daily),
+        total: toNumber(type.price_daily),
       };
 
     case "night":
       return {
         unit: "đêm",
         duration: 1,
-        unitPrice: Number(type.price_overnight),
-        total: Number(type.price_overnight),
+        unitPrice: toNumber(type.price_overnight),
+        total: toNumber(type.price_overnight),
       };
 
     default:

@@ -18,15 +18,18 @@ import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext'
 import { BrowserRouter } from 'react-router-dom'
 import Loadingcomp from './components/ui/Loadingcomp'
+import { BookingProvider } from './context/BookingContext.jsx'
 
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <BookingProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </BookingProvider>
     </AuthProvider>
   </StrictMode>,
 )
