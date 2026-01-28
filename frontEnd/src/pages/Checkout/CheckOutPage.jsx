@@ -1,19 +1,23 @@
 import Header from "@/components/layout/header/Header";
 import AuroraBg from "@/components/ui/AuroraBg";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import CheckOutCard from "./CheckOutCard";
 import UserCard from "./UserCard";
 import TotalCard from "./TotalCard";
 
+import { AuthContext } from '@/context/AuthContext'
+import CheckOutBtn from "./CheckOutBtn";
+
 export default function CheckOutPage() {
   const [searchParams] = useSearchParams();
-
+  const {user}=useContext(AuthContext);
   const roomId = searchParams.get("roomId");
   const bookingType = searchParams.get("type");
   const check_in = searchParams.get("checkIn");
   const check_out = searchParams.get("checkOut");
+  const totalTime=searchParams.get("totalTime");
 
   const [preview, setPreview] = useState(null);
   const [error, setError] = useState(null);
@@ -59,8 +63,8 @@ export default function CheckOutPage() {
             
             {/* CỘT TRÁI */}
             <div className="lg:col-span-7 space-y-6 ">
-              <CheckOutCard room={preview?.room} checkIn={check_in} checkOut={check_out} ></CheckOutCard>
-              <UserCard></UserCard>
+              <CheckOutCard room={preview?.room} checkIn={check_in} checkOut={check_out} type={bookingType} duration={totalTime} ></CheckOutCard>
+              <UserCard userName={user.name} phone={user.number_phone} ></UserCard>
               {/* card 2 */}
               {/* card 3 */}
             </div>
@@ -69,6 +73,7 @@ export default function CheckOutPage() {
             <div className="lg:col-span-5 space-y-6">
               <TotalCard total={preview?.price.total}></TotalCard>
               {/* phương thức thanh toán */} 
+              <CheckOutBtn userId={user._id} checkIn={check_in} checkOut={check_out} totalAmount={preview?.price.total} roomId={roomId}></CheckOutBtn>
               {/* nút thanh toán */}
             </div>
 

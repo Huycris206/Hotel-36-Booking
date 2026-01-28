@@ -9,7 +9,7 @@ import LoginPage from "./pages/Auth/LogInPage";
 import RegisterPage from "./pages/Auth/RegisterPage";
 import ProfilePage from './pages/Profile/ProfilePage.jsx';
 import RoomDetailPage from './pages/RoomDetail/RoomDetailPage.jsx';
-import CheckOutPage from './pages/Booking/CheckOutPage.jsx';
+import CheckOutPage from './pages/Checkout/CheckOutPage.jsx';
 
 // --- Admin Pages ---
 // 👇 Đảm bảo 5 file này phải tồn tại, nếu thiếu 1 cái là lỗi trắng màn hình
