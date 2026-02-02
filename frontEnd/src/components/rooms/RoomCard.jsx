@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 
-const RoomCard = ({ room }) => {
+const RoomCard = ({ room,timeType }) => {
   // room.type là dữ liệu từ Model TypeRoom sau khi populate
-  const roomType = room.type; 
-
+  const roomType = room.type;
+  const priceMap = {
+    hour: room.type.price_hourly,
+    day: room.type.price_daily,
+    night: room.type.price_overnight,
+  }; 
+  const suffixMap = {
+    hour: "giờ",
+    day: "ngày",
+    night: "đêm",
+  };
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition">
       <img
@@ -19,7 +28,7 @@ const RoomCard = ({ room }) => {
         <div className="flex justify-between items-center pt-2">
           <span className="text-orange-500 font-bold">
             {/* Vì Decimal128 trả về dạng string/object, cần ép kiểu số để toLocaleString */}
-            {Number(roomType?.price_daily?.$numberDecimal).toLocaleString()}đ / ngày
+            {Number(priceMap[timeType]?.$numberDecimal).toLocaleString()}VND / {suffixMap[timeType]}
           </span>
           <span className={`text-sm px-2 py-1 rounded ${
             room.status === 'available' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'

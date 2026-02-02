@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
 
+import { LogOut } from "lucide-react";
 const LogoutBtn = ({ onLogout }) => {
-  const navigate = useNavigate();
+  
 
   const handleLogout = () => {
     // 1. Xóa dữ liệu trình duyệt
@@ -13,15 +13,16 @@ const LogoutBtn = ({ onLogout }) => {
     if (onLogout) onLogout();
     
     // 3. Chuyển hướng
-    navigate("/");
+
   };
 
   return (
     <button
       onClick={handleLogout}
-      className="text-sm text-red-500 hover:underline"
+      className="text-sm text-red-500 hover:underline flex items-center gap-3  px-4 py-3"
     >
-      Đăng xuất
+      <LogOut size={22}></LogOut>
+      <span>Đăng xuất</span>
     </button>
   );
 };

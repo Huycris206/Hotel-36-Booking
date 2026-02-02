@@ -4,7 +4,7 @@ import RoomTypeFilter from './RoomTypeFilter';
 import Loadingcomp from '../ui/Loadingcomp';
 import { useRooms } from '@/hooks/useRooms';
 
-const RoomList = () => {
+const RoomList = ({timeType}) => {
   // 1. Khai báo các state quản lý dữ liệu và giao diện
   const [selectedType, setSelectedType] = useState('All');
   const { rooms, typeRooms, loading, error, refetch } = useRooms();
@@ -57,7 +57,7 @@ const RoomList = () => {
           {displayRooms
              // CHỈ LẤY PHÒNG AVAILABLE
             .map((room) => (
-                <RoomCard key={room._id} room={room} />
+                <RoomCard key={room._id} room={room} timeType={timeType}/>
         ))}
         </div>
       )}

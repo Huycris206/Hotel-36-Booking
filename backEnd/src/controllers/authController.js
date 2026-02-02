@@ -7,7 +7,7 @@ export const register = async (req, res) => {
   try {
     console.log("REGISTER BODY:", req.body);
 
-    const { name, email, number_phone, password } = req.body;
+    const { name, email, number_phone, password,role } = req.body;
 
     // 1️⃣ Validate
     if (!name || !number_phone || !password) {
@@ -29,7 +29,8 @@ export const register = async (req, res) => {
       name,
       email,
       number_phone,
-      password, // 👈 để mongoose pre-save hash
+      password,
+      role:'member', // 👈 để mongoose pre-save hash
     });
 
     // 4️⃣ Tạo token

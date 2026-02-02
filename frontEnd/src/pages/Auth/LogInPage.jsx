@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../../components/ui/Input";
-import Header from "@/components/ui/header/Header";
+import Header from "@/components/layout/header/Header";
 import AuroraBg from "@/components/ui/AuroraBg";
 import { AuthContext } from "@/context/AuthContext";
 import { useContext } from "react";
@@ -45,14 +45,13 @@ const LoginPage = () => {
       login(user, token)
 
       // ✅ LƯU TOKEN + USER
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      
 
       // 🔐 CHECK ROLE
       if (user.role === "admin") {
         navigate("/admin");
       } else {
-        navigate("/");
+        navigate(-1);
       }
 
     } catch (err) {
