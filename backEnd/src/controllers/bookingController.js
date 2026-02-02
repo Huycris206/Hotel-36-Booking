@@ -42,18 +42,23 @@ export const createBooking = async (req, res) => {
 };
 
 // [GET] Lấy toàn bộ danh sách đặt phòng
+// backEnd/src/controllers/bookingController.js
+
 export const getAllBookings = async (req, res) => {
     try {
         const bookings = await Booking.find()
-            .populate('user', 'name phoneNumber') // Chỉ lấy name và phone của user cho nhẹ
-            .populate('room')
-            .sort({ created_at: -1 }); // Đơn mới nhất lên đầu
+            .populate('user', 'name phoneNumber') 
+            // 👇 QUAN TRỌNG: Phải populate lồng nhau thế này mới lấy được ảnh và tên loại phòng
+            .populate({
+                path: 'room',
+                populate: { path: 'type' } 
+            })
+            .sort({ created_at: -1 });
         res.status(200).json(bookings);
     } catch (err) {
         res.status(500).json({ message: "Lỗi lấy dữ liệu", error: err.message });
     }
 };
-
 // [GET] Lấy chi tiết 1 đơn đặt phòng
 export const getBookingById = async (req, res) => {
     try {

@@ -1,6 +1,10 @@
 import React from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'; // 👇 Import hook điều hướng
+
 const CheckOutBtn = ({ userId, roomId, checkIn, checkOut, totalAmount }) => {
+  const navigate = useNavigate(); // 👇 Khởi tạo hook
+
   const handleCheckout = async () => {
     try {
       // 1. Tạo booking
@@ -14,35 +18,32 @@ const CheckOutBtn = ({ userId, roomId, checkIn, checkOut, totalAmount }) => {
 
       const bookingId = bookingRes.data._id;
 
-      // 2. Tạo payment (chưa thanh toán → pending)
-      const paymentRes = await axios.post("http://localhost:5001/api/payments", {
+      // 2. Tạo payment
+      await axios.post("http://localhost:5001/api/payments", {
         booking: bookingId,
         amount: totalAmount,
         payment_method: "momo",
-        transaction_id: null
+        transaction_id: `MOMO${Date.now()}` // Fake mã giao dịch để nhìn cho uy tín
       });
 
-      console.log("Booking:", bookingRes.data);
-      console.log("Payment:", paymentRes.data);
+      // 3. Thông báo và chuyển hướng
+      alert("🎉 Thanh toán thành công! Cảm ơn bạn đã đặt phòng.");
+      navigate("/my-booking"); // 👇 Chuyển về trang Lịch sử đặt phòng
 
-      alert("Tạo đơn & thanh toán thành công (pending)");
-
-      await axios.put(`http://localhost:5001/api/rooms/${roomId}`,{
-        status:"occupied"
-      });
     } catch (err) {
       console.error(err);
-      alert("Có lỗi xảy ra!");
+      alert("Có lỗi xảy ra trong quá trình thanh toán: " + (err.response?.data?.message || err.message));
     }
   };
+
   return (
     <div 
         onClick={handleCheckout}
-        className='bg-orange-500 focus:bg-orange-600 hover:bg-orange-600 rounded-2xl border p-6 space-y-4 w-full text-white font-bold text-center'
+        className='bg-orange-500 cursor-pointer focus:bg-orange-600 hover:bg-orange-600 rounded-2xl border p-6 space-y-4 w-full text-white font-bold text-center shadow-md transition-all active:scale-95'
     >
-      Thanh toán
+      Thanh toán ngay
     </div>
   )
 }
 
-export default CheckOutBtn
+export default CheckOutBtn;
